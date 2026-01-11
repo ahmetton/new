@@ -39,6 +39,9 @@ wpedu_safe_require( 'certificate.php' );
 wpedu_safe_require( 'jitsi.php' );
 wpedu_safe_require( 'admin/settings.php' );
 
+// Integration with Next.js authentication system
+wpedu_safe_require( 'nextjs-auth-integration.php' );
+
 // Activation / Deactivation
 register_activation_hook( __FILE__, 'wpedu_lms_activate' );
 function wpedu_lms_activate() {
