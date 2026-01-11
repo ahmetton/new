@@ -1,6 +1,7 @@
 import { prisma } from '../../../lib/prisma'
 import { isValidEmail } from '../../../lib/auth-utils'
 import { sendPasswordResetEmail } from '../../../lib/email'
+import crypto from 'crypto'
 
 export default async function handler(req, res) {
   if (req.method !== 'POST') {
@@ -27,8 +28,8 @@ export default async function handler(req, res) {
       })
     }
 
-    // Generate reset token
-    const token = Math.random().toString(36).substring(2) + Date.now().toString(36)
+    // Generate secure reset token using crypto
+    const token = crypto.randomBytes(32).toString('hex')
     const expires = new Date(Date.now() + 60 * 60 * 1000) // 1 hour
 
     // Delete any existing reset tokens for this user

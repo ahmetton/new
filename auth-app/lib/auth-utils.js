@@ -14,11 +14,8 @@ export function isValidEmail(email) {
 }
 
 export function isValidPhone(phone) {
-  // Simple phone validation - adjust based on your requirements
+  // Basic phone validation - accepts common formats
+  // For production, consider using libphonenumber-js for international phone validation
   const phoneRegex = /^[+]?[(]?[0-9]{3}[)]?[-\s.]?[0-9]{3}[-\s.]?[0-9]{4,6}$/
   return phoneRegex.test(phone)
-}
-
-export function generateResetToken() {
-  return Math.random().toString(36).substring(2) + Date.now().toString(36)
 }

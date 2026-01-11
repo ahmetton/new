@@ -47,7 +47,12 @@ export default function SignIn() {
 
   const handleSocialSignIn = async (provider) => {
     setLoading(true)
-    await signIn(provider, { callbackUrl: '/' })
+    try {
+      await signIn(provider, { callbackUrl: '/' })
+    } catch (error) {
+      setError('Social sign-in failed. Please try again.')
+      setLoading(false)
+    }
   }
 
   const handleRegister = async (e) => {
@@ -108,9 +113,11 @@ export default function SignIn() {
     }
   }
 
-  // Check if OAuth providers are configured
-  const hasGoogleAuth = process.env.NEXT_PUBLIC_GOOGLE_ENABLED === 'true'
-  const hasFacebookAuth = process.env.NEXT_PUBLIC_FACEBOOK_ENABLED === 'true'
+  // Note: We can't check env vars at runtime in client components, so social buttons are always hidden
+  // To show social buttons, the OAuth providers must be configured in the NextAuth config
+  // and you should manually set these flags based on your configuration
+  const hasGoogleAuth = false // Set to true if you've configured Google OAuth
+  const hasFacebookAuth = false // Set to true if you've configured Facebook OAuth
   const hasSocialAuth = hasGoogleAuth || hasFacebookAuth
 
   return (
