@@ -1,0 +1,201 @@
+/* WP EDU Theme — main.css
+   ملف الأنماط الرئيسي للقالب (RTL-ready)
+   يمكن تعديل المتغيرات في :root لتغيير الألوان/الهوامش بسهولة
+*/
+
+/* --- متغيرات قابلة للتعديل (مرجع تصميم) --- */
+:root{
+  --primary: #0a6ebd;
+  --primary-contrast: #ffffff;
+  --bg: #f7f7f7;
+  --surface: #ffffff;
+  --muted: #6b6b6b;
+  --text: #222222;
+  --success: #28a745;
+  --danger: #dc3545;
+  --radius: 8px;
+  --container-width: 1100px;
+  --max-card-width: 360px;
+  --shadow: 0 6px 18px rgba(11, 22, 33, 0.04);
+  --font-sans: "Noto Kufi Arabic", "Segoe UI", Tahoma, Arial, sans-serif;
+  --font-serif: "Noto Naskh Arabic", "Times New Roman", serif;
+}
+
+/* --- إعدادات أساسية --- */
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  padding:0;
+  font-family:var(--font-sans);
+  background:var(--bg);
+  color:var(--text);
+  direction:rtl;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  line-height:1.6;
+  font-size:16px;
+}
+
+/* محتوى مركزي */
+.site-container{
+  max-width:var(--container-width);
+  margin:22px auto;
+  padding:0 16px;
+}
+
+/* --- Header / Nav --- */
+.site-header{
+  background:var(--surface);
+  border-bottom:1px solid rgba(0,0,0,0.05);
+  padding:14px 0;
+  box-shadow:none;
+  position:sticky;
+  top:0;
+  z-index:100;
+}
+.site-header .site-container{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+}
+.site-logo img{ max-height:56px; display:block; }
+.site-nav ul{ list-style:none; margin:0; padding:0; display:flex; gap:10px; align-items:center; }
+.site-nav ul li a{ display:inline-block; padding:8px 12px; color:var(--text); border-radius:6px; }
+.site-nav ul li a:hover,
+.site-nav ul li a:focus{ background:rgba(10,110,189,0.06); color:var(--primary); outline:none; }
+
+/* زر البحث/دخول */
+.header-actions{ display:flex; gap:8px; align-items:center; }
+
+/* --- أزرار --- */
+.btn{
+  display:inline-block;
+  padding:8px 14px;
+  background:var(--primary);
+  color:var(--primary-contrast);
+  border-radius:6px;
+  text-decoration:none;
+  border:0;
+  cursor:pointer;
+  font-weight:600;
+}
+.btn:focus{ outline:3px solid rgba(10,110,189,0.18); }
+.btn.btn-outline{
+  background:transparent;
+  color:var(--primary);
+  border:1px solid var(--primary);
+}
+
+/* --- شبكة الدورات وبطاقات --- */
+.course-grid{
+  display:grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, var(--max-card-width)), 1fr));
+  gap:18px;
+  align-items:start;
+}
+.course-card{
+  background:var(--surface);
+  border-radius:var(--radius);
+  padding:12px;
+  border:1px solid rgba(0,0,0,0.04);
+  box-shadow:var(--shadow);
+  display:flex;
+  flex-direction:column;
+  height:100%;
+}
+.course-card img{
+  width:100%;
+  height:180px;
+  object-fit:cover;
+  border-radius:6px;
+  display:block;
+}
+.course-card h3{ margin:12px 0 6px 0; font-size:18px; line-height:1.2; }
+.course-card .course-meta{ display:flex; justify-content:space-between; color:var(--muted); font-size:14px; }
+.course-card .meta-row{ display:flex; gap:8px; align-items:center; }
+
+/* --- صفحة دورة مفردة --- */
+.course-single h1{ margin:0 0 12px 0; font-size:28px; }
+.course-single .course-content{ background:transparent; padding:6px 0; color:var(--text); }
+.course-single aside{ position:sticky; top:86px; }
+
+/* --- دروس داخل الدورة --- */
+.lesson-list{ list-style:none; margin:0; padding:0; }
+.lesson-list li{ padding:10px; border-bottom:1px dashed rgba(0,0,0,0.04); display:flex; align-items:center; justify-content:space-between; }
+.lesson-list li a{ color:var(--text); text-decoration:none; }
+
+/* --- لوحة التحكم للمدرس/الطالب (عناصر القالب) --- */
+.wpedu-dashboard{
+  display:grid;
+  grid-template-columns: 1fr 320px;
+  gap:18px;
+}
+@media (max-width:920px){
+  .wpedu-dashboard{ grid-template-columns: 1fr; }
+}
+
+/* --- نمط النماذج --- */
+input[type="text"], input[type="email"], textarea, select{
+  width:100%;
+  padding:10px 12px;
+  border:1px solid rgba(0,0,0,0.08);
+  border-radius:6px;
+  background:#fff;
+  color:var(--text);
+}
+textarea{ min-height:120px; resize:vertical; }
+
+/* --- واجهة الاختبارات (Quiz) --- */
+.wpedu-quiz{ background:var(--surface); padding:16px; border-radius:8px; border:1px solid rgba(0,0,0,0.04); }
+.wpedu-quiz-question{ margin-bottom:18px; }
+.wpedu-quiz-question h4{ margin:0 0 8px 0; font-size:16px; }
+.wpedu-quiz-options{ list-style:none; padding:0; margin:0; display:block; }
+.wpedu-quiz-options li{ margin-bottom:8px; }
+.wpedu-quiz-options label{ display:flex; gap:10px; align-items:center; background:#fff; padding:10px; border-radius:6px; border:1px solid rgba(0,0,0,0.03); cursor:pointer; }
+.wpedu-quiz-options input[type="radio"],
+.wpedu-quiz-options input[type="checkbox"]{ transform:scale(1.15); }
+
+/* أنواع الأسئلة: مقال */
+.wpedu-essay{ display:block; background:#fff; padding:10px; border-radius:6px; border:1px solid rgba(0,0,0,0.04); }
+
+/* --- واجهة التسليمات (Assignments) --- */
+.wpedu-submission{ padding:12px; border-radius:8px; background:#fff; border:1px solid rgba(0,0,0,0.04); margin-bottom:12px; }
+.wpedu-submission .meta{ font-size:13px; color:var(--muted); margin-bottom:8px; }
+
+/* --- حالة التقدّم --- */
+.progress-bar{ background:rgba(0,0,0,0.06); height:12px; border-radius:6px; overflow:hidden; }
+.progress-bar > span{ display:block; height:100%; background:linear-gradient(90deg,var(--primary), #3aa0e6); width:0%; transition:width .6s ease; }
+
+/* --- صفحة المدرّس / الملف الشخصي --- */
+.instructor-card{ background:var(--surface); padding:14px; border-radius:8px; text-align:center; border:1px solid rgba(0,0,0,0.04); }
+.instructor-card img{ width:96px; height:96px; border-radius:50%; object-fit:cover; }
+
+/* --- تقارير وطباعة الشهادة --- */
+.certificate{ width:100%; max-width:900px; margin:20px auto; padding:32px; background:var(--surface); border:8px solid var(--primary); text-align:center; font-family:var(--font-serif); }
+.certificate h1{ margin:8px 0 6px 0; font-size:34px; }
+.certificate .meta{ margin-top:18px; font-size:18px; color:var(--muted); }
+
+/* طباعة نظيفة للشهادة */
+@media print{
+  body{ background:#fff; color:#000; }
+  .site-header, .site-nav, .btn, footer, .site-container > :not(.certificate){ display:none !important; }
+  .certificate{ border:none; padding:0; box-shadow:none; max-width:100%; }
+}
+
+/* --- تحسين الوصول (Accessibility) --- */
+.sr-only{ position:absolute !important; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); border:0; }
+
+/* --- فوتر بسيط --- */
+.site-footer{ background:transparent; padding:20px 0; color:var(--muted); font-size:14px; border-top:1px solid rgba(0,0,0,0.04); }
+
+/* --- استجابات وتحسينات للأجهزة الصغيرة --- */
+@media (max-width:760px){
+  .site-header .site-container{ flex-direction:column; align-items:flex-start; gap:10px; }
+  .site-nav ul{ flex-wrap:wrap; }
+  .course-card img{ height:160px; }
+}
+
+/* --- تحسين الأداء / تحميل الخطوط الآمن --- */
+/* لا تقم بتحميل خطوط كبيرة على كل الصفحات؛ يفضل استيرادها ديناميكياً أو عبر preload في header إذا لزم */

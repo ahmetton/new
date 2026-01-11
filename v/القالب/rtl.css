@@ -1,0 +1,2 @@
+/* نمط RTL إضافي إن احتجت */
+body.rtl { direction: rtl; }

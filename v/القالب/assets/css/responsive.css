@@ -1,0 +1,97 @@
+/* Responsive fixes — عامة وشاملة لتجنب خروج المحتوى من الحاوية */
+
+/* ضمان احتساب البوكس بشكل مناسب */
+*, *::before, *::after { box-sizing: border-box; }
+
+/* حاوية الموقع تكون مرنة ومحدودة العرض */
+.site-container {
+  width: 100%;
+  max-width: var(--container-width, 1100px);
+  margin: 0 auto;
+  padding: 0 16px;
+}
+
+/* صور / فيديو / iframe مرنة ولا تكسر التصميم */
+img, picture, video, iframe, embed, object {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* منع المحتوى الثابت من التكسر خارج البطاقات */
+.course-card, .wpedu-submission, .instructor-card, .certificate {
+  overflow: hidden;
+  word-wrap: break-word;
+  word-break: break-word;
+}
+
+/* تحسين شبكة البطاقات لتعمل على جميع الشاشات */
+.course-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 18px;
+}
+
+/* دروس أو عناصر قائمة قابلة للالتفاف */
+.lesson-list li { word-break: break-word; }
+
+/* جداول قابلة للتمرير داخل الحاوية */
+.table-responsive { width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+table { width: 100%; max-width: 100%; border-collapse: collapse; }
+
+/* كتل الكود/النصوص طويلة السطر */
+pre, code {
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+/* عناصر الهيدر تلتف على الشاشات المتوسطة */
+.site-header .site-container {
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  flex-wrap:wrap; /* مهم: يسمح للعنصر بالالتفاف إذا ضاق العرض */
+}
+
+/* تأكد أن قائمة التنقل لا تتسبب بخروج العرض عند ملأها بروابط */
+.site-nav ul {
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+  margin:0;
+  padding:0;
+  list-style:none;
+}
+
+/* زر القائمة الجوالي إنشاؤه لا يسبب overflow */
+.mobile-menu-button { z-index:200; }
+
+/* ضبط الإطارات والـ iframe (مثل Jitsi) لتكون مضمونة داخل الحاوية */
+.embed-responsive { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width:100%; }
+.embed-responsive iframe, .embed-responsive embed, .embed-responsive object {
+  position: absolute; top:0; left:0; width:100%; height:100%;
+}
+
+/* تدرجات الخط وحجم الخط المتجاوب */
+html { font-size: 16px; }
+@media (max-width: 1200px) { html { font-size: 15px; } }
+@media (max-width: 920px)  { html { font-size: 15px; } }
+@media (max-width: 420px)  { html { font-size: 14px; } }
+
+/* قواعد وسطيّة (أجهزة التابلت) */
+@media (max-width: 1024px) {
+  .course-grid { grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); }
+  .site-container { padding: 0 14px; }
+  .course-card img { height: 160px; object-fit: cover; }
+}
+
+/* قواعد للجوال الصغيرة (تؤثر كما سبق) */
+@media (max-width: 768px) {
+  .site-header .site-container { align-items:center; }
+  .course-grid { grid-template-columns: 1fr; gap:12px; }
+  .site-nav ul { position: absolute; right: 12px; top: 64px; min-width: 200px; }
+}
+
+/* إصلاحات أخيرة لتجاوز أية قواعد مسبقة قوية */
+.wpedu-force-wrap { white-space: normal !important; word-break: break-word !important; overflow-wrap: break-word !important; }
